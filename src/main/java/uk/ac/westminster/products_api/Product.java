@@ -21,6 +21,6 @@ public class Product {
         return name;
     }
     public double getPrice(){
-        return price;//price
+        return price;//1
     }
 }
