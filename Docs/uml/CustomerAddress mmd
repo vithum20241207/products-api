@@ -1,0 +1,25 @@
+classDiagram
+    direction TB
+    class Customer {
+        -id: Long
+        -name: String
+        -email: String
+        -address: Address
+        +Customer()
+        +Customer(...)
+        +getId() Long
+        +getName() String
+        +getEmail() String
+        +getAddress() Address
+    }
+
+    class Address {
+        -street: String
+        -city: String
+        -postcode: String
+        +Address()
+        +Address(...)
+        +getStreet() String
+        +getCity() String
+        +getPostcode() String
+    }
