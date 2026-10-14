@@ -14,6 +14,6 @@ public class Customer {
 
     public String getEmail() { return email; }
 
-    public Address getAddress() { return address; }
+//    public Address getAddress() { return address; }
 }
 
