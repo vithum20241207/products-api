@@ -1,23 +1,45 @@
+
 package uk.ac.westminster.products_api;
 
-public class DigitalProduct extends Product {
+public class DigitalProduct extends Product implements Discountable {
+
+    private double discountedPrice;
     private String downloadUrl;
     private double fileSizeMb;
 
-    public  DigitalProduct(){
-
+    @Override
+    public void applyDiscount(double rate) {
+        // Nothing is shipped, so the full discount rate applies.
+        this.discountedPrice = getPrice() * (1 - rate);
     }
-    public DigitalProduct(Long id,String name,double price,
-                          String downloadUrl,double fileSizeMb ){
-        super(id,name,price);
-        this.downloadUrl= downloadUrl;
-        this.fileSizeMb=fileSizeMb;
 
+    @Override
+    public double getDiscountedPrice() {
+        return discountedPrice;
     }
-    public String getDownloadUrl(){
+
+    public DigitalProduct() {
+    }
+
+    public DigitalProduct(Long id, String name, double price,
+                          String downloadUrl, double fileSizeMb) {
+        super(id, name, price);
+        this.downloadUrl = downloadUrl;
+        this.fileSizeMb = fileSizeMb;
+    }
+
+    public String getDownloadUrl() {
         return downloadUrl;
     }
-    public double getFileSizeMb(){
+
+    public double getFileSizeMb() {
         return fileSizeMb;
     }
+
+    @Override
+    public String getSummary() {
+        return "Digital: " + getName()
+                + " | Download: " + downloadUrl;
+    }
 }
+

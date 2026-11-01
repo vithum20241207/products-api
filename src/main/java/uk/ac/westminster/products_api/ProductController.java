@@ -30,19 +30,24 @@ public class ProductController {
 
     }
     @PostMapping("/products")
-    public Product addProduct(@RequestBody Product product){//@RequestBody is what tells Spring to build a Product from the JSON you send.
+    public Product addProduct(@RequestBody DigitalProduct product){//@RequestBody is what tells Spring to build a Product from the JSON you send.
         return productService.addProduct(product);
     }
 
     @DeleteMapping("/products/{id}")
     public void deleteProduct(@PathVariable Long id){
         productService.deleteProduct(id);
-    }
+    }// Product is abstract, so Jackson cannot instantiate it directly.
 
 
     @GetMapping("/products/search")
     public List<Product> search(@RequestParam String name) {
         return productService.findByName(name);
+    }
+
+    @GetMapping("/products/summaries")
+    public List<String> getSummaries(){
+        return productService.getAllSummaries();
     }
 
 

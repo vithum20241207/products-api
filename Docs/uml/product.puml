@@ -1,6 +1,6 @@
 @startuml
 
-class Product {
+abstract class Product {
 -   id : Long
 -	name : String
 -	price : double
@@ -27,6 +27,7 @@ class ProductController {
   + getAllProducts() : List<Product>
   + getProductById(id : Long) : Product
   + addProduct(product : Product) : Product
+  + {abstract} getSummary() : String
   + deleteProduct(id : Long) : void
 }
 
@@ -35,4 +36,10 @@ ProductController ..> ProductService
 
 ' --> is an association: SOLID line ProductService --> Product
 
+interface Discountable {
+    + applyDiscount(rate : double) : void
+    + getDiscountedPrice() : double
+}
+Discountable <|.. DigitalProduct
+Discountable <|.. PhysicalProduct
 @enduml
